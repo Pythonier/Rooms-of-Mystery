@@ -12,8 +12,22 @@ def print_slow(str):
         sys.stdout.flush()
         time.sleep(0.1)
 
+# START ROOM LAYOUT EXAMPLE
+# Note: Framework is 9 rooms, final may be up to or more than 24.
+#--------------------------
+#|Room 7 | Room 8 | Room 9|
+#|       |        |       |
+#|-------------------------
+#|Room 4 | Room 5 | Room 6|
+#|       |        |       |
+#|-------------------------
+#|Room 1 | Room 2 | Room 3|
+#|       |        |       |
+#|-------------------------
+# END ROOM LAYOUT EXAMPLE
+
 # Well, I can try to keep these semi-organized, but no promises.
-# BEGIN ALL AROUND COMMANDS
+# BEGIN ALL AROUND THINGS (help, credits, commands, exit)
 # Let's define the exit, credits, help all within one section.
 def exit():
     raise SystemExit("\nThanks for playing, please play again!")
@@ -28,7 +42,21 @@ def credits():
     print "Game written and thought of by iBoredom_"
     print "Thanks to anyone who helped me along the way, from ideas"
     print "to grammar and small code mistakes!"
-# END OF THE ALL AROUND COMMANDS (help, commands, exit)
+def commands():
+    print "\nThe basic commands consist of the following:"
+    print "enter (n, s, e, w), take (object), examine (thing)"
+    print "help, exit (ends game), return (last visited room, if available)"
+    print "Some rooms may have hidden commands which can be found"
+    print "by examining the rooms and/or objects within."
+# END OF THE ALL AROUND THINGS (help, credits, commands, exit)
+
+# ROOM ONE - contains rooms to the EAST and NORTH. Exit behind you is locked for now.
+def room_one():
+    print "\nYou are standing in a room."
+    room1 = raw_input("Input: ")
+    if room1 == "enter n":
+        print "\nYou enter the room to the north."
+        
 
 #BEGIN START MENU
 # I like having callable start menus, so let's make one.
