@@ -102,7 +102,7 @@ def room_one():
         print "\n\tWelcome to my game, {0}.".format(name)
         print "\tFind the exit to escape!"
         print "\tForever watching,"
-        print "\t\tDeath"
+        print "\n\t\t[Evil Name Here]"
         room_one()
     else:
         print "\nInput error, please use a valid command."
