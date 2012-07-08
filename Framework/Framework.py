@@ -142,6 +142,7 @@ def room_two():
         quit()
     else:
         print "Input error, please use a valid command."
+        room_two()
 # END ROOM TWO
     
     
