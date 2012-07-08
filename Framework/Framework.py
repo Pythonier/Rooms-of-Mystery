@@ -20,6 +20,7 @@ print "But this place seems different, darker, mysterious."
 print "You're in for a long night. Welcome to..."
 print_slow("\nROOMS OF MYSTERY") # slow printing text thanks to print_slow
 print_slow("\nA terminal text adventure by: iBoredom_")
+print "" # Line breaks after calling print_slow don't work, so we need this empty print.
 name = raw_input("\nWhat is your name, dear adventurer: ").capitalize()
 # END TITLE SEQUENCE
 
@@ -35,6 +36,10 @@ name = raw_input("\nWhat is your name, dear adventurer: ").capitalize()
 #|Room 1 | Room 2 | Room 3|
 #|       |        |       |
 #|-------------------------
+#|Final  |
+#|Room   |
+#|-locked|
+#|-------|
 # END ROOM LAYOUT EXAMPLE
 
 # Well, I can try to keep these semi-organized, but no promises.
@@ -48,27 +53,98 @@ def help():
     print "monsters and surprises await! Type commands at any time to"
     print "see what commands can be used!"
 def credits():
-    print "\nRooms of Mystery by iBoredom_"
-    print "Game Concept by iBoredom_"
-    print "Game written and thought of by iBoredom_"
-    print "Thanks to anyone who helped me along the way, from ideas"
-    print "to grammar and small code mistakes!"
+    print "\n- Rooms of Mystery by iBoredom_"
+    print "- Game Concept by iBoredom_"
+    print "- Game written and thought of by iBoredom_"
+    print "- Thanks to anyone who helped me along the way, from ideas"
+    print "- to grammar and small code mistakes!"
 def commands():
     print "\nThe basic commands consist of the following:"
-    print "enter (n, s, e, w), take (object), examine (thing)"
-    print "help, exit (ends game), return (last visited room, if available)"
+    print "enter (n, s, e, w), take (object), examine (thing), room (tells you room number)"
+    print "help, exit (ends game)"
     print "Some rooms may have hidden commands which can be found"
     print "by examining the rooms and/or objects within."
 # END OF THE ALL AROUND THINGS (help, credits, commands, exit)
 
+# Beginning below is the room creations, in order from 1 - whatever is last.
 # ROOM ONE - contains rooms to the EAST and NORTH. Exit behind you is locked for now.
 def room_one():
     print "\nYou are standing in a room."
     room1 = raw_input("Input: ")
     if room1 == "enter n":
-        print "\nYou enter the room to the north."
-        
+        print "\nLEAVING ROOM."
+        room_four()
+    elif room1 == "enter e":
+        print "\nLEAVING ROOM"
+        room_two()
+    elif room1 == "enter s":
+        print "This door is locked."
+        room_one()
+    elif room1 == "examine room":
+        print "\nYou see a door to the north, east, and south, as well as a table."
+        room_one()
+    elif room1 == "help":
+        help()
+        room_one()
+    elif room1 == "commands":
+        commands()
+        room_one()
+    elif room1 == "exit":
+        quit()
+    elif room1 == "room":
+        print "This is the room you started in."
+        room_one()
+    elif room1 == "examine table":
+        print "\nYou see a note on the table that you could read."
+        room_one()
+    elif room1 == "read note":
+        print "\nYou pick up the note and read it."
+        print "\n\tWelcome to my game, {0}.".format(name)
+        print "\tFind the exit to escape!"
+        print "\tForever watching,"
+        print "\t\tDeath"
+        room_one()
+    else:
+        print "\nInput error, please use a valid command."
+        room_one()
+# END ROOM ONE
 
+# BEGIN ROOM TWO
+def room_two():
+    print "\nYou enter the room."
+    room2 = raw_input("Input: ")
+    if room2 == "examine room":
+        print "\nThe room has exits to the west, north, and east. You also see"
+        print "a cabinet."
+        room_two()
+    elif room2 == "enter n":
+        print "\nLEAVING ROOM"
+        room_five()
+    elif room2 == "enter w":
+        print "\nLEAVING ROOM"
+        room_one()
+    elif room2 == "enter e":
+        print "\nLEAVING ROOM"
+        room_three()
+    elif room2 == "examine cabinet":
+        print "\nThe cabinet appears unlocked."
+        room_two()
+    elif room2 == "open cabinet":
+        print "\nThe cabinent is empty."
+        room_two()
+    elif room2 == "room":
+        print "\nYou are in room 2."
+    elif room2 == "help":
+        help()
+    elif room2 == "commands":
+        commands()
+    elif room2 == "quit":
+        quit()
+    else:
+        print "Input error, please use a valid command."
+# END ROOM TWO
+    
+    
 #BEGIN START MENU
 # I like having callable start menus, so let's make one.
 def start_menu():
@@ -79,7 +155,7 @@ def start_menu():
     print "4. View Game Help"
     start = raw_input("> ").lower()
     if start == "1":
-        game_begin()
+        room_one()
     elif start == "2":
         exit()
     elif start == "3":
@@ -104,7 +180,7 @@ print "3. View Game Credits"
 print "4. View Game Help"
 start = raw_input("> ").lower()
 if start == "1":
-    game_begin()
+    room_one()
 elif start == "2":
     exit()
 elif start == "3":
