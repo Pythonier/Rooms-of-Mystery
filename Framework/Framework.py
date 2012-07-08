@@ -130,22 +130,92 @@ def room_two():
         print "\nThe cabinet appears unlocked."
         room_two()
     elif room2 == "open cabinet":
-        print "\nThe cabinent is empty."
+        print "\nThe cabinet is empty."
         room_two()
     elif room2 == "room":
         print "\nYou are in room 2."
-    elif room2 == "help":
-        help()
+        room_two()
     elif room2 == "commands":
         commands()
-    elif room2 == "quit":
-        quit()
+        room_two()
+    elif room2 == "help":
+        help()
+        room_two()
+    elif room2 == "exit":
+        exit()
     else:
         print "Input error, please use a valid command."
         room_two()
 # END ROOM TWO
-    
-    
+
+# BEGIN ROOM THREE
+def room_three():
+    print "\nYou enter the room."
+    room3 = raw_input("Input: ")
+    if room3 == "examine room":
+        print "\nYou see a door to the west and north."
+        room_three()
+    elif room3 == "enter w":
+        print "\nLEAVING ROOM"
+        room_two()
+    elif room3 == "enter n":
+        print "\nLEAVING ROOM"
+        room_six()
+    elif room3 == "room":
+        print "\nThis is room three."
+        room_three()
+    elif room3 == "commands":
+        commands()
+        room_three()
+    elif room3 == "help":
+        help()
+        room_three()
+    elif room3 == "exit":
+        exit()
+    else:
+        print "Input error, please use a valid command."
+        room_three()
+# END ROOM THREE
+
+# BEGIN ROOM FOUR
+def room_four():
+    print "\nYou enter the room."
+    room4 = raw_input("Input: ")
+    if room4 == "examine room":
+        print "\You see exits to the north, east, and south, as well as"
+        print "a bottle laying on the floor."
+        room_four()
+    elif room4 == "enter n":
+        print "\nLEAVING ROOM"
+        room_seven()
+    elif room4 == "enter e":
+        print "\nLEAVING ROOM"
+        room_five()
+    elif room4 == "enter s":
+        print "\nLEAVING ROOM"
+        room_one()
+    elif room4 == "room":
+        print "\nThis is room four."
+        room_four()
+    elif room4 == "examine bottle":
+        print "\nIt appears to be an empty bottle."
+        room_four()
+    elif room4 == "take bottle":
+        print "\nWhy do you need an empty bottle?"
+        room_four()
+    elif room4 == "help":
+        help()
+        room_four()
+    elif room4 == "commands":
+        commands()
+        room_four()
+    elif room4 == "exit":
+        exit()
+    else:
+        print "\nInput error, please use a valid command."
+        room_four()
+# END ROOM FOUR
+
 #BEGIN START MENU
 # I like having callable start menus, so let's make one.
 def start_menu():
