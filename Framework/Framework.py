@@ -11,14 +11,17 @@ def print_slow(str):
         sys.stdout.write(letter)
         sys.stdout.flush()
         time.sleep(0.1)
-        
-# Right here shall be the opening sequence which also gathers the player's name
+    
+# BEGIN TITLE SEQUENCE
+# Let's create the opening sequence - use the print_slow for title.
+# We will also gather the player's name here.
 print "\nWaking up inside a place you don't remember - always fun."
 print "But this place seems different, darker, mysterious."
 print "You're in for a long night. Welcome to..."
 print_slow("\nROOMS OF MYSTERY") # slow printing text thanks to print_slow
 print_slow("\nA terminal text adventure by: iBoredom_")
 name = raw_input("\nWhat is your name, dear adventurer: ").capitalize()
+# END TITLE SEQUENCE
 
 # START ROOM LAYOUT EXAMPLE
 # Note: Framework is 9 rooms, final may be up to or more than 24.
@@ -38,7 +41,7 @@ name = raw_input("\nWhat is your name, dear adventurer: ").capitalize()
 # BEGIN ALL AROUND THINGS (help, credits, commands, exit,)
 # Let's define the exit, credits, help all within one section.
 def exit():
-    raise SystemExit("\nThanks for playing, please play again!")
+    raise SystemExit("\nThanks for playing, {0}, please play again!".format(name))
 def help():
     print "\nYou play this game by typing what you wish to do."
     print "The game involves you trying to escape, but be warned"
@@ -85,12 +88,16 @@ def start_menu():
     elif start == "4":
         help()
         start_menu()
+    else:
+        print "\nInput error, please choose a valid option."
+        start_menu()
 # END OF START MENU
 
-# Let's create the opening sequence - use the print_slow for title.
+# BEGIN OPENING CHOICES
+# This will display after the player inputs their name.
 # Also includes the basic starting options.
 # Final Note: Keeping this at the bottom of the code so the functions can be called.
-print "\n{0}, please choose an option to begin.".format(name) # this line break appears useless, so we created a blank print
+print "\nWelcome, {0}, please choose an option to begin.".format(name) # this line break appears useless, so we created a blank print
 print "1. Play 'Rooms of Mystery'"
 print "2. Exit Game"
 print "3. View Game Credits"
@@ -106,3 +113,7 @@ elif start == "3":
 elif start == "4":
     help()
     start_menu()
+else:
+    print "\nInput error, please choose a valid option."
+    start_menu()
+# END OPENING CHOICES
