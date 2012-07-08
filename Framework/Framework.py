@@ -4,6 +4,7 @@
 # Importing some things
 import time
 import sys
+import re
 
 # Firstly, I want a slow typed game name. Let's define that...suppose it could be used for anything where it's needed.
 def print_slow(str):
@@ -70,7 +71,7 @@ def commands():
 # ROOM ONE - contains rooms to the EAST and NORTH. Exit behind you is locked for now.
 def room_one():
     print "\nYou are standing in a room."
-    room1 = raw_input("Input: ")
+    room1 = raw_input("Input: ").lower()
     if room1 == "enter n":
         print "\nLEAVING ROOM."
         room_four()
@@ -90,7 +91,7 @@ def room_one():
         commands()
         room_one()
     elif room1 == "exit":
-        quit()
+        exit()
     elif room1 == "room":
         print "This is the room you started in."
         room_one()
@@ -112,7 +113,7 @@ def room_one():
 # BEGIN ROOM TWO
 def room_two():
     print "\nYou enter the room."
-    room2 = raw_input("Input: ")
+    room2 = raw_input("Input: ").lower()
     if room2 == "examine room":
         print "\nThe room has exits to the west, north, and east. You also see"
         print "a cabinet."
@@ -151,7 +152,7 @@ def room_two():
 # BEGIN ROOM THREE
 def room_three():
     print "\nYou enter the room."
-    room3 = raw_input("Input: ")
+    room3 = raw_input("Input: ").lower()
     if room3 == "examine room":
         print "\nYou see a door to the west and north."
         room_three()
@@ -180,7 +181,7 @@ def room_three():
 # BEGIN ROOM FOUR
 def room_four():
     print "\nYou enter the room."
-    room4 = raw_input("Input: ")
+    room4 = raw_input("Input: ").lower()
     if room4 == "examine room":
         print "\You see exits to the north, east, and south, as well as"
         print "a bottle laying on the floor."
@@ -216,6 +217,47 @@ def room_four():
         room_four()
 # END ROOM FOUR
 
+# BEGIN ROOM FIVE
+def room_five():
+    print "\nYou enter the room."
+    room5 = raw_input("Input: ").lower()
+    if room5 == "examine room":
+        print "\nYou see an exit in every direction, as well as a boot."
+        room_five()
+    elif room5 == "enter n":
+        print "\nLEAVING ROOM"
+        room_eight()
+    elif room5 == "enter e":
+        print "\nLEAVING ROOM"
+        room_six()
+    elif room5 == "enter s":
+        print "\nLEAVING ROOM"
+        room_two()
+    elif room5 == "enter w":
+        print "\nLEAVING ROOM"
+        room_four()
+    elif room5 == "examine boot":
+        print "\nIt appears to be an old, leather boot."
+        room_five()
+    elif room5 == "take boot":
+        print "\nYou put the boot on, ew."
+        room_five()
+    elif room5 == "room":
+        print "This is room five."
+        room_five()
+    elif room5 == "help":
+        help()
+        room_five()
+    elif room5 == "commands":
+        commands()
+        room_five()
+    elif room5 == "exit":
+        exit()
+    else:
+        print "\nInput error, please use a valid command."
+        room_five()
+# END ROOM FIVE
+
 #BEGIN START MENU
 # I like having callable start menus, so let's make one.
 def start_menu():
@@ -249,6 +291,7 @@ print "1. Play 'Rooms of Mystery'"
 print "2. Exit Game"
 print "3. View Game Credits"
 print "4. View Game Help"
+print "5. Load Game"
 start = raw_input("> ").lower()
 if start == "1":
     room_one()
