@@ -11,6 +11,14 @@ def print_slow(str):
         sys.stdout.write(letter)
         sys.stdout.flush()
         time.sleep(0.1)
+        
+# Right here shall be the opening sequence which also gathers the player's name
+print "\nWaking up inside a place you don't remember - always fun."
+print "But this place seems different, darker, mysterious."
+print "You're in for a long night. Welcome to..."
+print_slow("\nROOMS OF MYSTERY") # slow printing text thanks to print_slow
+print_slow("\nA terminal text adventure by: iBoredom_")
+name = raw_input("\nWhat is your name, dear adventurer: ").capitalize()
 
 # START ROOM LAYOUT EXAMPLE
 # Note: Framework is 9 rooms, final may be up to or more than 24.
@@ -27,7 +35,7 @@ def print_slow(str):
 # END ROOM LAYOUT EXAMPLE
 
 # Well, I can try to keep these semi-organized, but no promises.
-# BEGIN ALL AROUND THINGS (help, credits, commands, exit)
+# BEGIN ALL AROUND THINGS (help, credits, commands, exit,)
 # Let's define the exit, credits, help all within one section.
 def exit():
     raise SystemExit("\nThanks for playing, please play again!")
@@ -82,13 +90,7 @@ def start_menu():
 # Let's create the opening sequence - use the print_slow for title.
 # Also includes the basic starting options.
 # Final Note: Keeping this at the bottom of the code so the functions can be called.
-print "\nWaking up inside a place you don't remember - always fun."
-print "But this place seems different, darker, mysterious."
-print "You're in for a long night. Welcome to..."
-print_slow("\nROOMS OF MYSTERY") # slow printing text thanks to print_slow
-print_slow("\nA terminal text adventure by: iBoredom_")
-print ""
-print "\nPlayer, please choose an option to begin." # this line break appears useless, so we created a blank print
+print "\n{0}, please choose an option to begin.".format(name) # this line break appears useless, so we created a blank print
 print "1. Play 'Rooms of Mystery'"
 print "2. Exit Game"
 print "3. View Game Credits"
