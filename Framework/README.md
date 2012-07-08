@@ -1,0 +1,2 @@
+This is the framework to Rooms of Mystery.  It will be void of any monsters, item taking, player saving, 
+classes handling different aspects, or anything else.  It will be the rooms created with a simple ending.  It will be BARE - a basic framework.
