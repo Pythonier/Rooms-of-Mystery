@@ -30,11 +30,11 @@ name = raw_input("\nWhat is your name, dear adventurer: ").capitalize()
 #--------------------------
 #|Room 7 | Room 8 | Room 9|
 #|       |        |       |
-#|-------------------------
-#|Room 4 | Room 5 | Room 6|
-#|       |        |       |
-#|-------------------------
-#|Room 1 | Room 2 | Room 3|
+#|---------------------------------
+#|Room 4 | Room 5 | Room 6|Riddle |
+#|       |        |       |Banish |
+#|------------------------|Room   |
+#|Room 1 | Room 2 | Room 3|--------
 #|       |        |       |
 #|-------------------------
 #|Final  |
@@ -100,7 +100,7 @@ def room_one():
         room_one()
     elif room1 == "read note":
         print "\nYou pick up the note and read it."
-        print "\n\tWelcome to my game, {0}.".format(name)
+        print "\ntWelcome to my game, {0}.".format(name)
         print "\tFind the exit to escape!"
         print "\tForever watching,"
         print "\n\t\t[Evil Name Here]"
@@ -258,7 +258,201 @@ def room_five():
         room_five()
 # END ROOM FIVE
 
-#BEGIN START MENU
+# START ROOM SIX
+def room_six():
+    print "\nYou enter the room."
+    room6 = raw_input("Input: ").lower()
+    if room6 == "examine room":
+        print "\nYou see exits to the north, west, and south. Nothing more."
+        room_six()
+    elif room6 == "enter n":
+        print "\nLEAVING ROOM"
+        room_nine()
+    elif room6 == "enter w":
+        print "\nLEAVING ROOM"
+        room_five()
+    elif room6 == "enter s":
+        print "\nLEAVING ROOM"
+        room_three()
+    elif room6 == "room":
+        print "\nThis is room six."
+        room_six()
+    elif room6 == "help":
+        help()
+        room_six()
+    elif room6 == "commands":
+        commands()
+        room_six()
+    elif room6 == "exit":
+        exit()
+    else:
+        print "\nInput error, please use a valid command."
+        room_six()
+# END ROOM SIX
+
+# BEGIN ROOM SEVEN - let's actually add a mini-game here. Warning: Not currently flagged off in the framework. Will play every time they enter.
+def room_seven():
+    print "\nYou enter the room, door disappearing behind you."
+    room7 = raw_input("Input: ").lower()
+    if room7 == "examine room":
+        print "\nYou see no doors - just an old man standing before you."
+        room_seven()
+    elif room7 == "examine old man":
+        print "\nHis face is covered, perhaps you could talk to him."
+        room_seven()
+    elif room7 == "enter s":
+        print "\nThe door had disappeared"
+        room_seven()
+    elif room7 == "room":
+        print "\nThis is room seven."
+        room_seven()
+    elif room7 == "talk to old man":
+        print "\nYou begin to speak when the man interrupts you."
+        print_slow("\nHello, {0}. Are you prepared to live or die?".format(name))
+        print ""
+        game = raw_input("\nYes or No: ").lower()
+        if game == "yes":
+            print ""
+            print "Then answer my questions you must."
+            print "What walks on four legs in the morning, two legs in the"
+            print "evening, and three legs at night?"
+            game2 = raw_input("Input: ").lower()
+            if game2 == "man":
+                print "\nCorrect. Next: A Person walked Parallel to a Legion of Elephants."
+                game3 = raw_input("Input: ").lower()
+                if game3 == "apple":
+                    print "\nVery good."
+                    print "Final question: What is as big as you are and yet does not weigh anything?"
+                    game4 = raw_input("Input: ").lower()
+                    if game4 == "your shadow":
+                        print "\nCorrect. I shall move you to the next room."
+                        room_eight()
+                    else:
+                        print "\nWrong answer! Good bye!"
+                        print "A flash appears and you cannot see."
+                        riddle_room()
+                else:
+                    print "\nWrong answer! Good bye!"
+                    print "A flash appears and you cannot see."
+                    riddle_room()
+            else:
+                print "\nWrong answer! Good bye!"
+                print "A flash appears and you cannot see."
+                riddle_room()
+        elif game == "no":
+            print "Than leave my site you scum!"
+            print "A flash appears and you cannot see."
+            riddle_room()
+    elif room7 == "help":
+        help()
+        room_seven()
+    elif room7 == "commands":
+        commands()
+        room_seven()
+    elif room7 == "exit":
+        exit()
+    else:
+        print "Input error, please use a valid command."
+        room_seven()
+# END ROOM SEVEN AND OLD MAN'S GAME
+
+# BEGIN ROOM EIGHT
+def room_eight():
+    print "\nYou enter the room."
+    room8 = raw_input("Input: ").lower()
+    if room8 == "examine room":
+        print "\nYou see a door to the east and south, nothing more."
+        room_eight()
+    elif room8 == "enter e":
+        print "\nLEAVING ROOM"
+        room_nine()
+    elif room8 == "enter s":
+        print "\nLEAVING ROOM"
+        room_five()
+    elif room8 == "room":
+        print "\nThis is room eight."
+        room_eight()
+    elif room8 == "help":
+        help()
+        room_eight()
+    elif room8 == "commands":
+        commands()
+        room_eight()
+    elif room8 == "exit":
+        exit()
+    else:
+        print "\nInput error, please use a valid command."
+        room_eight()
+# END ROOM EIGHT
+
+# BEGIN ROOM NINE
+def room_nine():
+    print "\nYou enter the room."
+    room9 = raw_input("Input ").lower()
+    if room9 == "examine room":
+        print "\nYou see a door to the south and west, as well as a box."
+        room_nine()
+    elif room9 == "enter w":
+        print "\nLEAVING ROOM"
+        room_eight()
+    elif room9 == "enter s":
+        print "\nLEAVING ROOM"
+        room_six()
+    elif room9 == "examine box":
+        print "\nIt appears to be a box made of wood. It could be opened."
+        room_nine()
+    elif room9 == "open box":
+        print "\nYou open the box and are engulfed by darkness."
+        room_one()
+    elif room9 == "room":
+        print "\nThis is room nine."
+        room_nine()
+    elif room9 == "help":
+        help()
+        room_nine()
+    elif room9 == "commands":
+        commands()
+        room_nine()
+    elif room9 == "exit":
+        exit()
+    else:
+        print "\nInput error, please use a valid command."
+        room_nine()
+# END ROOM NINE
+
+# BEGIN RIDDLE ROOM - incorrect or refusal to play send the player here.
+def riddle_room():
+    print "\nThe flash disappears, leaving you in a strange room."
+    rroom = raw_input("Input: ")
+    if rroom == "examine room":
+        print "You can only see the faint engravings someone made in the wall and the outline of a door."
+        riddle_room()
+    elif rroom == "examine engravings":
+        print "\nthe riddle on the door holds the key to leaving this room..."
+        print "...death to those who get it wrong"
+        riddle_room()
+    elif rroom == "examine door":
+        print "\nYou see a riddle on the door."
+        riddle_room()
+    elif rroom == "examine riddle":
+        print "\nIt is an insect, and the first part of its name is the name of another insect. What is it?"
+        riddle = raw_input("Guess: ").lower()
+        if riddle == "beetle":
+            print "\nLeave this room, you shall."
+            room_one()
+        else:
+            print "\nThe room begins to fill with an oder of something foul."
+            print "This is the end for you, {0}!".format(name)
+            print "\nYou have died!"
+            raw_input("Press any key to continue.")
+            start_menu()
+    else:
+        print "Input error, please use a valid command."
+        riddle_room()
+# END RIDDLE ROOM
+# END ROOMS
+    
+# BEGIN START MENU
 # I like having callable start menus, so let's make one.
 def start_menu():
     print "\nPlayer, please choose an option to begin." # this line break appears useless, so we created a blank print
@@ -291,7 +485,6 @@ print "1. Play 'Rooms of Mystery'"
 print "2. Exit Game"
 print "3. View Game Credits"
 print "4. View Game Help"
-print "5. Load Game"
 start = raw_input("> ").lower()
 if start == "1":
     room_one()
