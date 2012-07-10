@@ -4,7 +4,6 @@
 # Importing some things
 import time
 import sys
-import re
 
 # Firstly, I want a slow typed game name. Let's define that...suppose it could be used for anything where it's needed.
 def print_slow(str):
