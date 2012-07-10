@@ -1,4 +1,4 @@
 Rooms-of-Mystery
 ================
 
-Python console game consisting of monsters, fighting, object finding, escape. Framework coming soon.
+Python console game consisting of monsters, fighting, object finding, escape. Concept One (V1) in progress.
