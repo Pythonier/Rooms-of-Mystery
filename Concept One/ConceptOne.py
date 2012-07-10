@@ -83,27 +83,6 @@ def system_error():
     raise SystemExit()
 # END OF THE ALL AROUND THINGS (help, credits, commands, exit)
 
-# Here are some testing commands for now. Remove them in final release.
-def quickItems():
-    global itemOne, itemTwo, itemThree, itemFour, oldGame, hammer, bench
-    print "\nItems given!"
-    itemOne = itemOne + 1
-    itemTwo = itemTwo + 1
-    itemThree = itemThree + 1
-    itemFour = itemFour + 1
-    oldGame = oldGame + 1
-    hammer = hammer + 1
-    bench = bench + 1
-def item_one():
-    global itemOne
-    print "\nItem one given!"
-    itemOne = itemOne + 1
-def item_two():
-    global itemTwo
-    print "\nItem two given!"
-    itemTwo = itemTwo + 1
-# END TESTING COMMANDS
-
 # Beginning below is the room creations, in order from 1 - whatever is last.
 # ROOM ONE - contains rooms to the EAST and NORTH. Exit behind you is locked for now.
 def room_one():
@@ -147,19 +126,10 @@ def room_one():
         room_one()
     elif room1 == "read note":
         print "\nYou pick up the note and read it."
-        print "\ntWelcome to my game, {0}.".format(name)
+        print "\n\tWelcome to my game, {0}.".format(name)
         print "\tFind the exit to escape!"
         print "\tForever watching,"
         print "\n\t\t[Evil Name Here]"
-        room_one()
-    elif room1 == "items":
-        quickItems()
-        room_one()
-    elif room1 == "item1":
-        item_one()
-        room_one()
-    elif room1 == "item2":
-        item_two()
         room_one()
     else:
         print "\nInput error, please use a valid command."
