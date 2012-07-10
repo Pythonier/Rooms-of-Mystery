@@ -1,4 +1,4 @@
-# Framework for Rooms of Mystery
+# Concept One for Rooms of Mystery
 # Remember, this will be buggy, glitchy, and things may not work right - oh well, Framework wasn't designed to be perfect.
 
 # Importing some things
