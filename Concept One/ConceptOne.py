@@ -1,5 +1,7 @@
 # Concept One for Rooms of Mystery
-# Remember, this will be buggy, glitchy, and things may not work right - oh well, Framework wasn't designed to be perfect.
+# This is still a work in progress - some things may escape me while programming or testing.
+
+# Goal List: More rooms, monsters, player information, player saving and loading, add some secret rooms in + whatever comes to mind.
 
 # Importing some things
 import time
@@ -13,7 +15,7 @@ def print_slow(str):
         time.sleep(0.1)
 
 # Let's handle the items now, eh? Actually, for now, let's handle the old man's game here as well.
-global itemOne, itemTwo, itemThree, itemFour, oldGame, hammer, bench
+global itemOne, itemTwo, itemThree, itemFour, oldGame, hammer, bench, roomOneWording
 # Starting amount of item(number)
 itemOne = 0
 itemTwo = 0
@@ -22,6 +24,7 @@ itemFour = 0
 oldGame = 0
 hammer = 0
 bench = 0
+roomOneWording = 0
 # Quick bit o' information: below is the current item location, to save some time.
 item = ["bottle", "bench", "old man", "boot"] # useless except for developers knowledge.
 
@@ -86,57 +89,108 @@ def system_error():
 # Beginning below is the room creations, in order from 1 - whatever is last.
 # ROOM ONE - contains rooms to the EAST and NORTH. Exit behind you is locked for now.
 def room_one():
-    global itemOne, itemTwo, itemThree, itemFour
-    print "\nYou are standing in a room."
-    room1 = raw_input("Input: ").lower()
-    if room1 == "enter n":
-        print "\nLEAVING ROOM."
-        room_four()
-    elif room1 == "enter e":
-        print "\nLEAVING ROOM"
-        room_two()
-    elif room1 == "enter s":
-        if itemOne == 0 or itemTwo == 0 or itemThree == 0 or itemFour == 0:
-            print "\nThis door is locked and has four key holes."
+    global itemOne, itemTwo, itemThree, itemFour, roomOneWording
+    if roomOneWording == 0:
+        print "\nYou are standing in a room."
+        room1 = raw_input("Input: ").lower()
+        if room1 == "enter n":
+            print "\nLEAVING ROOM."
+            roomOneWording = roomOneWording + 1 # Change the text from the default to slightly confuse them? Maybe.
+            room_four()
+        elif room1 == "enter e":
+            print "\nLEAVING ROOM"
+            roomOneWording = roomOneWording + 1 # Change the text from the default to slightly confuse them? Maybe.
+            room_two()
+        elif room1 == "enter s":
+            if itemOne == 0 or itemTwo == 0 or itemThree == 0 or itemFour == 0:
+                print "\nThis door is locked and has four key holes."
+                room_one()
+            elif itemOne >= 1 & itemTwo >= 1 & itemThree >= 1 & itemFour >= 1:
+                print "\nYou escape to your freedom! Congratulations, {0}!".format(name)
+                print "Care to explore more, even if you have won?"
+                game_won = raw_input("Yes or No: ").lower()
+                if game_won == "yes":
+                    start_menu()
+                elif game_won == "no":
+                    raise SystemExit("\nGood bye, {0}!".format(name))
+        elif room1 == "examine room":
+            print "\nYou see a door to the north, east, and south, as well as a table."
             room_one()
-        elif itemOne >= 1 & itemTwo >= 1 & itemThree >= 1 & itemFour >= 1:
-            print "\nYou escape to your freedom! Congratulations, {0}!".format(name)
-            print "Care to explore more, even if you have won?"
-            game_won = raw_input("Yes or No: ").lower()
-            if game_won == "yes":
-                start_menu()
-            elif game_won == "no":
-                raise SystemExit("\nGood bye, {0}!".format(name))
-    elif room1 == "examine room":
-        print "\nYou see a door to the north, east, and south, as well as a table."
-        room_one()
-    elif room1 == "help":
-        help()
-        room_one()
-    elif room1 == "commands":
-        commands()
-        room_one()
-    elif room1 == "exit":
-        exit()
-    elif room1 == "room":
-        print "This is the room you started in."
-        room_one()
-    elif room1 == "examine table":
-        print "\nYou see a note on the table that you could read."
-        room_one()
-    elif room1 == "read note":
-        print "\nYou pick up the note and read it."
-        print "\n\tWelcome to my game, {0}.".format(name)
-        print "\tFind the exit to escape!"
-        print "\tForever watching,"
-        print "\n\t\t[Evil Name Here]"
-        room_one()
-    else:
-        print "\nInput error, please use a valid command."
-        room_one()
+        elif room1 == "help":
+            help()
+            room_one()
+        elif room1 == "commands":
+            commands()
+            room_one()
+        elif room1 == "exit":
+            exit()
+        elif room1 == "room":
+            print "\nThis is the room you started in."
+            room_one()
+        elif room1 == "examine table":
+            print "\nYou see a note on the table that you could read."
+            room_one()
+        elif room1 == "read note":
+            print "\nYou pick up the note and read it."
+            print "\n\tWelcome to my game, {0}.".format(name)
+            print "\tFind the exit to escape!"
+            print "\tForever watching,"
+            print "\n\t\t[Evil Name Here]"
+            room_one()
+        else:
+            print "\nInput error, please use a valid command."
+            room_one()
+    elif roomOneWording >= 1: # Changed text since they left and came back.
+        print "\nYou enter the room."
+        room1 = raw_input("Input: ")
+        if room1 == "enter n":
+            print "\nLEAVING ROOM."
+            room_four()
+        elif room1 == "enter e":
+            print "\nLEAVING ROOM"
+            room_two()
+        elif room1 == "enter s":
+            if itemOne == 0 or itemTwo == 0 or itemThree == 0 or itemFour == 0:
+                print "\nThis door is locked and has four key holes."
+                room_one()
+            elif itemOne >= 1 & itemTwo >= 1 & itemThree >= 1 & itemFour >= 1:
+                print "\nYou escape to your freedom! Congratulations, {0}!".format(name)
+                print "Care to explore more, even if you have won?"
+                game_won = raw_input("Yes or No: ").lower()
+                if game_won == "yes":
+                    start_menu()
+                elif game_won == "no":
+                    raise SystemExit("\nGood bye, {0}!".format(name))
+        elif room1 == "examine room":
+            print "\nYou see a door to the north, east, and south, as well as a table."
+            room_one()
+        elif room1 == "help":
+            help()
+            room_one()
+        elif room1 == "commands":
+            commands()
+            room_one()
+        elif room1 == "exit":
+            exit()
+        elif room1 == "room":
+            print "\nThis is the room you started in."
+            room_one()
+        elif room1 == "examine table":
+            print "\nYou see a note on the table that you could read."
+            room_one()
+        elif room1 == "read note":
+            print "\nYou pick up the note and read it."
+            print "\n\tWelcome to my game, {0}.".format(name)
+            print "\tFind the exit to escape!"
+            print "\tForever watching,"
+            print "\n\t\t[Evil Name Here]"
+            room_one()
+        else:
+            print "\nInput error, please use a valid command."
+            room_one()
 # END ROOM ONE
 
-# BEGIN ROOM TWO
+# BEGIN ROOM TWO - Exits: North, East, West. Contains the hammer.
 def room_two():
     global hammer, cabinet
     print "\nYou enter the room."
@@ -181,7 +235,7 @@ def room_two():
         room_two()
 # END ROOM TWO
 
-# BEGIN ROOM THREE
+# BEGIN ROOM THREE - Exits: North, West. Contains the bench containing key two.
 def room_three():
     global bench, hammer, itemTwo
     print "\nYou enter the room."
@@ -207,10 +261,13 @@ def room_three():
         if hammer == 0:
             print "\nYou need something to perform this action."
             room_three()
-        elif hammer >= 1:
+        elif hammer >= 1 and bench == 0: # This ensures only one breaking of the bench can happen by checking bench status.
             print "\nYou break the bench open, revealing a key!"
-            bench = bench + 1
-            itemTwo = itemTwo + 1
+            bench = bench + 1 # Flag to make bench examine different as well as prevent them from "re-breaking".
+            itemTwo = itemTwo + 1 # Give key two.
+            room_three()
+        elif bench >= 1:
+            print "\nThe bench is already broken."
             room_three()
     elif room3 == "room":
         print "\nThis is room three."
@@ -228,7 +285,7 @@ def room_three():
         room_three()
 # END ROOM THREE
 
-# BEGIN ROOM FOUR
+# BEGIN ROOM FOUR - Exits: North, East, South. Contains key one.
 def room_four():
     global itemOne
     print "\nYou enter the room."
@@ -263,7 +320,7 @@ def room_four():
     elif room4 == "take bottle":
         if itemOne == 0:
             print "\nYou pick up the bottle and find a small object."
-            itemOne = itemOne + 1
+            itemOne = itemOne + 1 # Giving key one.
             room_four()
         elif itemOne == 1:
             print "\nThe bottle is empty now."
@@ -281,7 +338,7 @@ def room_four():
         room_four()
 # END ROOM FOUR
 
-# BEGIN ROOM FIVE
+# BEGIN ROOM FIVE - Exits in all directions. Contains key four.
 def room_five():
     global itemFour
     print "\nYou enter the room."
@@ -308,7 +365,7 @@ def room_five():
         if itemFour == 0:
             print "\nYou put the boot on, ew."
             print "You feel a pain and take a key from the boot - sweet!"
-            itemFour = itemFour + 1
+            itemFour = itemFour + 1 # Giving key four.
             room_five()
         elif itemFour == 1:
             print "\nThe boot is empty."
@@ -329,7 +386,7 @@ def room_five():
         room_five()
 # END ROOM FIVE
 
-# START ROOM SIX
+# START ROOM SIX - Exits: North, South, West.
 def room_six():
     print "\nYou enter the room."
     room6 = raw_input("Input: ").lower()
@@ -361,7 +418,7 @@ def room_six():
         room_six()
 # END ROOM SIX
 
-# BEGIN ROOM SEVEN - let's actually add a mini-game here. Warning: Not currently flagged off in the framework. Will play every time they enter.
+# BEGIN ROOM SEVEN - let's actually add a mini-game here (winning: key three). Once completed, it's "flagged" to prevent players from reentering this room.
 def room_seven():
     global itemThree, oldGame
     print "\nYou enter the room, door disappearing behind you."
@@ -398,8 +455,8 @@ def room_seven():
                     game4 = raw_input("Input: ").lower()
                     if game4 == "your shadow":
                         print "\nCorrect. I shall move you to the next room and give you this key."
-                        itemThree = itemThree + 1
-                        oldGame = oldGame + 1
+                        itemThree = itemThree + 1 # Giving key three.
+                        oldGame = oldGame + 1 # The "flag" to prevent re-entry
                         room_eight()
                     else:
                         print "\nWrong answer! Good bye!"
@@ -433,7 +490,7 @@ def room_seven():
         room_seven()
 # END ROOM SEVEN AND OLD MAN'S GAME
 
-# BEGIN ROOM EIGHT
+# BEGIN ROOM EIGHT - Exits: East, West, South
 def room_eight():
     print "\nYou enter the room."
     room8 = raw_input("Input: ").lower()
@@ -465,7 +522,7 @@ def room_eight():
         room_eight()
 # END ROOM EIGHT
 
-# BEGIN ROOM NINE
+# BEGIN ROOM NINE - Box moving player to room one - may get more use later.
 def room_nine():
     print "\nYou enter the room."
     room9 = raw_input("Input ").lower()
@@ -500,7 +557,7 @@ def room_nine():
         room_nine()
 # END ROOM NINE
 
-# BEGIN RIDDLE ROOM - incorrect or refusal to play send the player here.
+# BEGIN RIDDLE ROOM - incorrect answers and/or refusal to play the old man's game sends the player here.
 def riddle_room():
     print "\nThe flash disappears, leaving you in a strange room."
     rroom = raw_input("Input: ")
@@ -516,13 +573,14 @@ def riddle_room():
         riddle_room()
     elif rroom == "examine riddle":
         print "\nIt is an insect, and the first part of its name is the name of another insect. What is it?"
-        riddle = raw_input("Guess: ").lower()
+        riddle = raw_input("Guess: ").lower() # Incorrect response means death. Increase to three tries?
         if riddle == "beetle":
             print "\nLeave this room, you shall."
             room_one()
-        else:
+        else: # Death to the player. Sad. Reloads the start menu upon key entry.
+            print "\nYou hear a voice: good bye, {0}. Rest in peace.".format(name)
             print "\nThe room begins to fill with an oder of something foul."
-            print "This is the end for you, {0}!".format(name)
+            print "You have no way to escape."
             print "\nYou have died!"
             raw_input("Press any key to continue.")
             start_menu()
@@ -535,7 +593,7 @@ def riddle_room():
 # BEGIN START MENU
 # I like having callable start menus, so let's make one.
 def start_menu():
-    print "\nPlayer, please choose an option to begin." # this line break appears useless, so we created a blank print
+    print "\nWelcome, {0}, please choose an option to begin.".format(name)
     print "1. Play 'Rooms of Mystery'"
     print "2. Exit Game"
     print "3. View Game Credits"
@@ -560,7 +618,7 @@ def start_menu():
 # This will display after the player inputs their name.
 # Also includes the basic starting options.
 # Final Note: Keeping this at the bottom of the code so the functions can be called.
-print "\nWelcome, {0}, please choose an option to begin.".format(name) # this line break appears useless, so we created a blank print
+print "\nWelcome, {0}, please choose an option to begin.".format(name)
 print "1. Play 'Rooms of Mystery'"
 print "2. Exit Game"
 print "3. View Game Credits"
