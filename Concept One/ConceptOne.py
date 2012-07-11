@@ -1,7 +1,8 @@
 # Concept One for Rooms of Mystery
 # This is still a work in progress - some things may escape me while programming or testing.
 
-# Goal List: More rooms, monsters, player information, player saving and loading, add some secret rooms in + whatever comes to mind.
+# Goal List: More rooms, monsters, player information, player saving and loading, add some secret rooms in + whatever 
+# comes to mind.
 
 # Importing some things
 import time
@@ -14,7 +15,7 @@ def print_slow(str):
         sys.stdout.flush()
         time.sleep(0.1)
 
-# Let's handle the items now, eh? Actually, for now, let's handle the old man's game here as well.
+# Let's handle the items now, eh? Actually, for now, let's handle the old man's game and roomone re-entry wording
 global itemOne, itemTwo, itemThree, itemFour, oldGame, hammer, bench, roomOneWording
 # Starting amount of item(number)
 itemOne = 0
