@@ -232,7 +232,7 @@ def room_two():
     elif room2 == "exit":
         exit()
     else:
-        print "Input error, please use a valid command."
+        print "\nInput error, please use a valid command."
         room_two()
 # END ROOM TWO
 
@@ -282,7 +282,7 @@ def room_three():
     elif room3 == "exit":
         exit()
     else:
-        print "Input error, please use a valid command."
+        print "\nInput error, please use a valid command."
         room_three()
 # END ROOM THREE
 
@@ -487,7 +487,7 @@ def room_seven():
     elif room7 == "exit":
         exit()
     else:
-        print "Input error, please use a valid command."
+        print "\nInput error, please use a valid command."
         room_seven()
 # END ROOM SEVEN AND OLD MAN'S GAME
 
@@ -586,7 +586,7 @@ def riddle_room():
             raw_input("Press any key to continue.")
             start_menu()
     else:
-        print "Input error, please use a valid command."
+        print "\nInput error, please use a valid command."
         riddle_room()
 # END RIDDLE ROOM
 # END ROOMS
