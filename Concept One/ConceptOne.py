@@ -15,7 +15,7 @@ def print_slow(str):
         sys.stdout.flush()
         time.sleep(0.1)
 
-# Let's handle the items now, eh? Actually, for now, let's handle the old man's game and roomone re-entry wording
+# Let's handle the items now, eh? Actually, for now, let's handle the old man's game here as well.
 global itemOne, itemTwo, itemThree, itemFour, oldGame, hammer, bench, roomOneWording
 # Starting amount of item(number)
 itemOne = 0
@@ -43,6 +43,9 @@ name = raw_input("\nWhat is your name, dear adventurer: ").capitalize()
 
 # START ROOM LAYOUT EXAMPLE
 # Note: Framework is 9 rooms, final may be up to or more than 24.
+#--------------------------
+#|Room   |Room    |Room   |
+#|10     |11      |12     |
 #--------------------------
 #|Room 7 | Room 8 | Room 9|
 #|       |        |       |
