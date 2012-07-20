@@ -25,7 +25,7 @@ roomOneWording = 0
 # Just setting the inventory; empty to start.
 invent = ["Empty"]
 
-# Setting the items for finding.
+# Setting the items for finding - just for our information.
 items = ["Key One", "Key Two", "Key Three", "Key Four", "Hammer", "Bottle", "Boot"]
 
 # BEGIN TITLE SEQUENCE
@@ -89,48 +89,51 @@ def system_error():
     raise SystemExit()
 # END OF THE ALL AROUND THINGS (help, credits, commands, exit)
 
+# BEGIN OLD MANS GAME
 # Here we shall define the old man's game layout.
 def old_man():
-        print "\nYou begin to speak when the man interrupts you."
-        print_slow("\nHello, {0}. Are you prepared to live or die?".format(name))
+    global oldGame
+    print "\nYou begin to speak when the man interrupts you."
+    print_slow("\nHello, {0}. Are you prepared to live or die?".format(name))
+    print ""
+    game = raw_input("Input: ").lower()
+    if game == "yes":
         print ""
-        game = raw_input("Input: ").lower()
-        if game == "yes":
-            print ""
-            print "\nThen answer my questions you must."
-            print "What walks on four legs in the morning, two legs in the"
-            print "evening, and three legs at night?"
-            game2 = raw_input("Input: ").lower()
-            if game2 == "man":
-                print "\nCorrect. Next: A Person walked Parallel to a Legion of Elephants."
-                game3 = raw_input("Input: ").lower()
-                if game3 == "apple":
-                    print "\nVery good."
-                    print "Final question: What is as big as you are and yet does not weigh anything?"
-                    game4 = raw_input("Input: ").lower()
-                    if game4 == "your shadow":
-                        print "\nCorrect. I shall move you to the next room and give you this key."
-                        invent.append("Key Three")
-                        if "Empty" in invent:
-                            invent.remove("Empty")
+        print "\nThen answer my questions you must."
+        print "What walks on four legs in the morning, two legs in the"
+        print "evening, and three legs at night?"
+        game2 = raw_input("Input: ").lower()
+        if game2 == "man":
+            print "\nCorrect. Next: A Person walked Parallel to a Legion of Elephants."
+            game3 = raw_input("Input: ").lower()
+            if game3 == "apple":
+                print "\nVery good."
+                print "Final question: What is as big as you are and yet does not weigh anything?"
+                game4 = raw_input("Input: ").lower()
+                if game4 == "your shadow":
+                    print "\nCorrect. I shall move you to the next room and give you this key."
+                    invent.append("Key Three")
+                    if "Empty" in invent:
+                        invent.remove("Empty")
                         oldGame = oldGame + 1 # The "flag" to prevent re-entry
                         room_eight()
-                    else:
+                else:
                         print "\nWrong answer! Good bye!"
                         print "A flash appears and you cannot see."
                         riddle_room()
-                else:
+            else:
                     print "\nWrong answer! Good bye!"
                     print "A flash appears and you cannot see."
                     riddle_room()
-            else:
+        else:
                 print "\nWrong answer! Good bye!"
                 print "A flash appears and you cannot see."
                 riddle_room()
-        else:
+    else:
             print "\nThan leave my site you scum!"
             print "A flash appears and you cannot see."
             riddle_room()
+# END OLD MANS GAME
 
 # Beginning below is the room creations, in order from 1 - whatever is last.
 # We keep only the rooms below here; games etc. should go above...try to not get unorganized to much.
@@ -247,56 +250,97 @@ def room_one():
 
 # BEGIN ROOM TWO - Exits: North, East, West. Contains the hammer.
 def room_two():
-    print "\nYou enter the room."
-    room2 = raw_input("Input: ").lower()
-    if room2 == "examine room":
-        print "\nThe room has exits to the west, north, and east. You also see"
-        print "a cabinet."
-        room_two()
-    elif room2 == "enter n":
-        print "\nLEAVING ROOM"
-        room_five()
-    elif room2 == "enter w":
-        print "\nLEAVING ROOM"
-        room_one()
-    elif room2 == "enter e":
-        print "\nLEAVING ROOM"
-        room_three()
-    elif room2 == "examine cabinet":
-        if "Hammer" in invent:
-            print "\nThe cabinet had a hammer in it. You've already taken it."
-            room_two() 
+    if bench == 0:
+        print "\nYou enter the room."
+        room2 = raw_input("Input: ").lower()
+        if room2 == "examine room":
+            print "\nThe room has exits to the west, north, and east. You also see"
+            print "a cabinet."
+            room_two()
+        elif room2 == "enter n":
+            print "\nLEAVING ROOM"
+            room_five()
+        elif room2 == "enter w":
+            print "\nLEAVING ROOM"
+            room_one()
+        elif room2 == "enter e":
+            print "\nLEAVING ROOM"
+            room_three()
+        elif room2 == "examine cabinet":
+            if "Hammer" in invent:
+                print "\nThe cabinet had a hammer in it. You've already taken it."
+                room_two() 
+            else:
+                print "\nThe cabinet appears unlocked."
+                room_two()
+        elif room2 == "open cabinet":
+            if "Hammer" in invent:
+                print "\nYou've already opened the cabinet."
+                room_two()
+            else:
+                print "\nYou open the cabinet and find a hammer!"
+                invent.append("Hammer")
+                if "Empty" in invent:
+                    invent.remove("Empty")
+                    room_two()
+        elif room2 == "room":
+            print "\nYou are in room 2."
+            room_two()
+        elif room2 == "commands":
+            commands()
+            room_two()
+        elif room2 == "help":
+            help()
+            room_two()
+        elif room2 == "exit":
+            exit()
+        elif room2 == "i":
+            print "\nYou currently have:"
+            print invent
+            room_two()
         else:
-            print "\nThe cabinet appears unlocked."
+            print "\nInput error, please use a valid command."
             room_two()
-    elif room2 == "open cabinet":
-        if "Hammer" in invent:
-            print "\nYou've already opened the cabinet."
+    if bench >= 1:
+        print "\nYou enter the room."
+        room2 = raw_input("Input: ").lower()
+        if room2 == "examine room":
+            print "\nThe room has exits to the west, north, and east. You also see"
+            print "a cabinet."
+            room_two()
+        elif room2 == "enter n":
+            print "\nLEAVING ROOM"
+            room_five()
+        elif room2 == "enter w":
+            print "\nLEAVING ROOM"
+            room_one()
+        elif room2 == "enter e":
+            print "\nLEAVING ROOM"
+            room_three()
+        elif room2 == "examine cabinet":
+                print "\nThe cabinet had a hammer in it. You've already taken it."
+                room_two() 
+        elif room2 == "open cabinet":
+                print "\nYou've already opened the cabinet."
+                room_two()
+        elif room2 == "room":
+            print "\nYou are in room 2."
+            room_two()
+        elif room2 == "commands":
+            commands()
+            room_two()
+        elif room2 == "help":
+            help()
+            room_two()
+        elif room2 == "exit":
+            exit()
+        elif room2 == "i":
+            print "\nYou currently have:"
+            print invent
             room_two()
         else:
-            print "\nYou open the cabinet and find a hammer!"
-            invent.append("Hammer")
-            if "Empty" in invent:
-                invent.remove("Empty")
+            print "\nInput error, please use a valid command."
             room_two()
-    elif room2 == "room":
-        print "\nYou are in room 2."
-        room_two()
-    elif room2 == "commands":
-        commands()
-        room_two()
-    elif room2 == "help":
-        help()
-        room_two()
-    elif room2 == "exit":
-        exit()
-    elif room2 == "i":
-        print "\nYou currently have:"
-        print invent
-        room_two()
-    else:
-        print "\nInput error, please use a valid command."
-        room_two()
 # END ROOM TWO
 
 # BEGIN ROOM THREE - Exits: North, West. Contains the bench containing key two.
@@ -326,6 +370,7 @@ def room_three():
             print "\nYou break the bench open, revealing a key!"
             bench = bench + 1 # Flag to make bench examine different as well as prevent them from "re-breaking".
             invent.append("Key Two")
+            invent.remove("Hammer")
             if "Empty" in invent:
                 invent.remove("Empty")
             room_three()
