@@ -89,7 +89,49 @@ def system_error():
     raise SystemExit()
 # END OF THE ALL AROUND THINGS (help, credits, commands, exit)
 
+# Here we shall define the old man's game layout.
+def old_man():
+        print "\nYou begin to speak when the man interrupts you."
+        print_slow("\nHello, {0}. Are you prepared to live or die?".format(name))
+        print ""
+        game = raw_input("Input: ").lower()
+        if game == "yes":
+            print ""
+            print "\nThen answer my questions you must."
+            print "What walks on four legs in the morning, two legs in the"
+            print "evening, and three legs at night?"
+            game2 = raw_input("Input: ").lower()
+            if game2 == "man":
+                print "\nCorrect. Next: A Person walked Parallel to a Legion of Elephants."
+                game3 = raw_input("Input: ").lower()
+                if game3 == "apple":
+                    print "\nVery good."
+                    print "Final question: What is as big as you are and yet does not weigh anything?"
+                    game4 = raw_input("Input: ").lower()
+                    if game4 == "your shadow":
+                        print "\nCorrect. I shall move you to the next room and give you this key."
+                        invent.append("Key Three")
+                        oldGame = oldGame + 1 # The "flag" to prevent re-entry
+                        room_eight()
+                    else:
+                        print "\nWrong answer! Good bye!"
+                        print "A flash appears and you cannot see."
+                        riddle_room()
+                else:
+                    print "\nWrong answer! Good bye!"
+                    print "A flash appears and you cannot see."
+                    riddle_room()
+            else:
+                print "\nWrong answer! Good bye!"
+                print "A flash appears and you cannot see."
+                riddle_room()
+        else:
+            print "\nThan leave my site you scum!"
+            print "A flash appears and you cannot see."
+            riddle_room()
+
 # Beginning below is the room creations, in order from 1 - whatever is last.
+# We keep only the rooms below here; games etc. should go above...try to not get unorganized to much.
 # ROOM ONE - contains rooms to the EAST and NORTH. Exit behind you is locked for now.
 def room_one():
     global roomOneWording
@@ -313,9 +355,13 @@ def room_four():
     print "\nYou enter the room."
     room4 = raw_input("Input: ").lower()
     if room4 == "examine room":
-        print "\nYou see exits to the north, east, and south, as well as"
-        print "a bottle laying on the floor."
-        room_four()
+        if "Bottle" in invent:
+            print "\nYou see exits to the north, east, and south."
+            room_four()
+        else:
+            print "\nYou see exits to the north, east, and south, as well as"
+            print "a bottle laying on the floor."
+            room_four()
     elif room4 == "enter n":
         if oldGame == 0:
             print "\nLEAVING ROOM"
@@ -344,8 +390,9 @@ def room_four():
             print "\nThe bottle is empty now."
             room_four()
         else:
-            print "\nYou pick up the bottle and find a small object."
+            print "\nYou pick up the bottle and find a small key."
             invent.append("Key One")
+            invent.append("Bottle")
             room_four()
     elif room4 == "help":
         help()
@@ -370,7 +417,7 @@ def room_five():
     room5 = raw_input("Input: ").lower()
     if room5 == "examine room":
         if "Boot" in invent:
-            print "\nYou see a boot in every direction."
+            print "\nYou see an exit in every direction."
         else:
             print "\nYou see an exit in every direction, as well as a boot."
             room_five()
@@ -394,8 +441,8 @@ def room_five():
             print "\nThe boot is empty."
             room_five()
         else:
-            print "\nYou put the boot on, ew."
-            print "You feel a pain and take a key from the boot - sweet!"
+            print "\nYou take the nasty boot and see something within."
+            print "You reach in and take a key from the boot."
             invent.append("Key Four")
             invent.append("Boot")
             room_five()
@@ -473,47 +520,7 @@ def room_seven():
         print "\nThis is room seven."
         room_seven()
     elif room7 == "talk to old man":
-        print "\nYou begin to speak when the man interrupts you."
-        print_slow("\nHello, {0}. Are you prepared to live or die?".format(name))
-        print ""
-        game = raw_input("\nYes or No: ").lower()
-        if game == "yes":
-            print ""
-            print "Then answer my questions you must."
-            print "What walks on four legs in the morning, two legs in the"
-            print "evening, and three legs at night?"
-            game2 = raw_input("Input: ").lower()
-            if game2 == "man":
-                print "\nCorrect. Next: A Person walked Parallel to a Legion of Elephants."
-                game3 = raw_input("Input: ").lower()
-                if game3 == "apple":
-                    print "\nVery good."
-                    print "Final question: What is as big as you are and yet does not weigh anything?"
-                    game4 = raw_input("Input: ").lower()
-                    if game4 == "your shadow":
-                        print "\nCorrect. I shall move you to the next room and give you this key."
-                        invent.append("Key Three")
-                        oldGame = oldGame + 1 # The "flag" to prevent re-entry
-                        room_eight()
-                    else:
-                        print "\nWrong answer! Good bye!"
-                        print "A flash appears and you cannot see."
-                        riddle_room()
-                else:
-                    print "\nWrong answer! Good bye!"
-                    print "A flash appears and you cannot see."
-                    riddle_room()
-            else:
-                print "\nWrong answer! Good bye!"
-                print "A flash appears and you cannot see."
-                riddle_room()
-        elif game == "no":
-            print "Than leave my site you scum!"
-            print "A flash appears and you cannot see."
-            riddle_room()
-        else:
-            print "\nInput error, please use a valid response."
-            room_seven()
+      old_man()
     elif room7 == "help":
         help()
         room_seven()
@@ -611,7 +618,7 @@ def riddle_room():
     print "\nThe flash disappears, leaving you in a strange room."
     rroom = raw_input("Input: ")
     if rroom == "examine room":
-        print "You can only see the faint engravings someone made in the wall and the outline of a door."
+        print "\nYou can only see the faint engravings someone made in the wall and the outline of a door."
         riddle_room()
     elif rroom == "examine engravings":
         print "\nthe riddle on the door holds the key to leaving this room..."
@@ -622,8 +629,17 @@ def riddle_room():
         riddle_room()
     elif rroom == "examine riddle":
         print "\nIt is an insect, and the first part of its name is the name of another insect. What is it?"
+        answer = "beetle"
         riddle = raw_input("Guess: ").lower() # Incorrect response means death. Increase to three tries?
-        if riddle == "beetle":
+        guesses = 0
+        
+        while riddle != answer and guesses < 2:
+            print "\nThat is wrong, {0}.".format(name)
+            print "Try again, perhaps? How many more do you get, aHahaha!"
+            guesses += 1
+            riddle = raw_input("Guess: ").lower()
+            
+        if riddle == answer:
             print "\nLeave this room, you shall."
             room_one()
         else: # Death to the player. Sad. Reloads the start menu upon key entry.
