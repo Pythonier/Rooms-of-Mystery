@@ -23,7 +23,7 @@ bench = 0
 roomOneWording = 0
 
 # Just setting the inventory; empty to start.
-invent = []
+invent = ["Empty"]
 
 # Setting the items for finding.
 items = ["Key One", "Key Two", "Key Three", "Key Four", "Hammer", "Bottle", "Boot"]
@@ -111,6 +111,8 @@ def old_man():
                     if game4 == "your shadow":
                         print "\nCorrect. I shall move you to the next room and give you this key."
                         invent.append("Key Three")
+                        if "Empty" in invent:
+                            invent.remove("Empty")
                         oldGame = oldGame + 1 # The "flag" to prevent re-entry
                         room_eight()
                     else:
@@ -274,6 +276,8 @@ def room_two():
         else:
             print "\nYou open the cabinet and find a hammer!"
             invent.append("Hammer")
+            if "Empty" in invent:
+                invent.remove("Empty")
             room_two()
     elif room2 == "room":
         print "\nYou are in room 2."
@@ -322,6 +326,8 @@ def room_three():
             print "\nYou break the bench open, revealing a key!"
             bench = bench + 1 # Flag to make bench examine different as well as prevent them from "re-breaking".
             invent.append("Key Two")
+            if "Empty" in invent:
+                invent.remove("Empty")
             room_three()
         elif bench >= 1:
             print "\nThe bench is already broken."
@@ -393,6 +399,8 @@ def room_four():
             print "\nYou pick up the bottle and find a small key."
             invent.append("Key One")
             invent.append("Bottle")
+            if "Empty" in invent:
+                invent.remove("Empty")
             room_four()
     elif room4 == "help":
         help()
@@ -445,6 +453,8 @@ def room_five():
             print "You reach in and take a key from the boot."
             invent.append("Key Four")
             invent.append("Boot")
+            if "Empty" in invent:
+                invent.remove("Empty")
             room_five()
     elif room5 == "room":
         print "This is room five."
@@ -520,7 +530,7 @@ def room_seven():
         print "\nThis is room seven."
         room_seven()
     elif room7 == "talk to old man":
-      old_man()
+        old_man()
     elif room7 == "help":
         help()
         room_seven()
