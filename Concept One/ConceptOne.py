@@ -152,7 +152,7 @@ def room_one():
             roomOneWording = roomOneWording + 1 # Change the text from the default to slightly confuse them? Maybe.
             room_two()
         elif room1 == "enter s":
-            if "KeyOne" "KeyTwo" "KeyThree" "KeyFour" in invent:
+            if "Key One" "Key Two" "Key Three" "Key Four" in invent:
                 print "\nYou escape to your freedom! Congratulations, {0}!".format(name)
                 print "Care to explore more, even if you have won?"
                 game_won = raw_input("Yes or No: ").lower()
@@ -204,7 +204,7 @@ def room_one():
             print "\nLEAVING ROOM"
             room_two()
         elif room1 == "enter s":
-            if "KeyOne" "KeyTwo" "KeyThree" "KeyFour" in invent:
+            if "Key One" "Key Two" "Key Three" "Key Four" in invent:
                 print "\nYou escape to your freedom! Congratulations, {0}!".format(name)
                 print "Care to explore more, even if you have won?"
                 game_won = raw_input("Yes or No: ").lower()
@@ -268,21 +268,21 @@ def room_two():
             room_three()
         elif room2 == "examine cabinet":
             if "Hammer" in invent:
-                print "\nThe cabinet had a hammer in it. You've already taken it."
+                print "\nInvalid command."
                 room_two() 
             else:
                 print "\nThe cabinet appears unlocked."
                 room_two()
         elif room2 == "open cabinet":
             if "Hammer" in invent:
-                print "\nYou've already opened the cabinet."
+                print "\nInvalud command."
                 room_two()
             else:
                 print "\nYou open the cabinet and find a hammer!"
                 invent.append("Hammer")
                 if "Empty" in invent:
                     invent.remove("Empty")
-                    room_two()
+                room_two()
         elif room2 == "room":
             print "\nYou are in room 2."
             room_two()
@@ -318,10 +318,10 @@ def room_two():
             print "\nLEAVING ROOM"
             room_three()
         elif room2 == "examine cabinet":
-                print "\nThe cabinet had a hammer in it. You've already taken it."
+                print "\nInvalid command."
                 room_two() 
         elif room2 == "open cabinet":
-                print "\nYou've already opened the cabinet."
+                print "\nInvalid command."
                 room_two()
         elif room2 == "room":
             print "\nYou are in room 2."
@@ -418,7 +418,7 @@ def room_four():
             print "\nLEAVING ROOM"
             room_seven()
         elif oldGame >= 1:
-            print "\nThis door is locked now."
+            print "\nThis door is locked."
             room_four()
     elif room4 == "enter e":
         print "\nLEAVING ROOM"
@@ -430,15 +430,15 @@ def room_four():
         print "\nThis is room four."
         room_four()
     elif room4 == "examine bottle":
-        if "KeyOne" in invent:
-            print "\nThe bottle appears empty now."
+        if "Key One" in invent:
+            print "\nInvalid command."
             room_four()
         else:
             print "\nIt appears to have something in it."
             room_four()
     elif room4 == "take bottle":
-        if "KeyOne" in invent:
-            print "\nThe bottle is empty now."
+        if "Key One" in invent:
+            print "\nInvalid command."
             room_four()
         else:
             print "\nYou pick up the bottle and find a small key."
@@ -487,11 +487,15 @@ def room_five():
         print "\nLEAVING ROOM"
         room_four()
     elif room5 == "examine boot":
-        print "\nIt appears to be an old, leather boot."
-        room_five()
+        if "Boot" in invent:
+            print "\nInvalid command."
+            room_five()
+        else:
+            print "\nIt appears to be an old, leather boot."
+            room_five()
     elif room5 == "take boot":
-        if "KeyFour" in invent:
-            print "\nThe boot is empty."
+        if "Key Four" in invent:
+            print "\nInvalid command."
             room_five()
         else:
             print "\nYou take the nasty boot and see something within."
